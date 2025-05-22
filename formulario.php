@@ -4,8 +4,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=mvc_videos','root','123456');
 
 $id =  filter_input(INPUT_GET,'id',FILTER_VALIDATE_INT);
 $video =[
-    'url' => '',
-    'titulo' =>'' 
+    'URL_VIDEO' => '',
+    'TITULO_VIDEO' =>'' 
 ];
 
 if ($id !== false && $id !== null) {
@@ -14,9 +14,6 @@ if ($id !== false && $id !== null) {
     $statement -> execute();
     $video = $statement -> fetch(PDO::FETCH_ASSOC);
 }
-
-var_dump($id, $video);
-
 ?>
 
 
@@ -36,36 +33,22 @@ var_dump($id, $video);
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 </head>
 
-<body>
 
-    <!-- Cabecalho -->
-    <header>
-
-        <nav class="cabecalho">
-            <a class="logo" href="listagem.php"></a>
-
-            <div class="cabecalho__icones">
-                <a href="./enviar-video.php" class="cabecalho__videos"></a>
-                <a href="../pages/login.php" class="cabecalho__sair">Sair</a>
-            </div>
-        </nav>
-
-    </header>
-
+    <?=require_once 'inicio-html.php';?>
     <main class="container">
 
     <form class="container__formulario"  method="POST">
             <h2 class="formulario__titulo">Envie um vídeo!</h2>
                 <div class="formulario__campo">
                     <label class="campo__etiqueta" for="url">Link embed</label>
-                    <input name="url" class="campo__escrita" required value = "<?= $video['url'] ?>"
+                    <input name="url" class="campo__escrita" required value = "<?= $video['URL_VIDEO'] ?>"
                         placeholder="Por exemplo: https://www.youtube.com/embed/FAY1K2aUg5g" id='url' />
                 </div>
 
 
                 <div class="formulario__campo">
                     <label class="campo__etiqueta" for="titulo">Titulo do vídeo</label>
-                    <input name="titulo" class="campo__escrita" required value = "<?= $video['titulo'] ?>" placeholder="Neste campo, dê o nome do vídeo"
+                    <input name="titulo" class="campo__escrita" required value = "<?= $video['TITULO_VIDEO'] ?>" placeholder="Neste campo, dê o nome do vídeo"
                         id='titulo' />
                 </div>
 
@@ -74,6 +57,4 @@ var_dump($id, $video);
 
     </main>
 
-</body>
-
-</html>
+<?=require_once 'fim-html.php';?>

@@ -13,4 +13,4 @@ $statement -> bindValue(':titulo',$titulo);
 $statement -> bindValue(':id',$id, PDO::PARAM_INT);
 $statement -> execute();
 
-header('Location: listagem.php');
+header('Location:/');
