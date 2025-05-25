@@ -1,8 +1,6 @@
 <?php
 
-
-
-namespace Alura\Mvc\Entity;
+namespace Alura\MVC\Entity;
 
 class Video{
     
@@ -13,6 +11,7 @@ class Video{
     public function __construct(string $url,string $titulo) 
     {
         $this->setUrl($url);
+        $this->setTitulo($titulo);
     }
 
     private function setUrl(string $url){
@@ -24,7 +23,7 @@ class Video{
         $this->url = $url;
     }
 
-    private function setTitulo(string $titulo):void{
+    public function setTitulo(string $titulo):void{
         $this->titulo = $titulo;
     }
     

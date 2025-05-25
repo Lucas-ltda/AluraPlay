@@ -1,9 +1,8 @@
 <?php
-
 namespace Alura\Mvc\Repositorio;
 
-use PDO;
 use Alura\Mvc\Entity\Video;
+use PDO;
 
 class VideoRepositorio{
     public function __construct(private \PDO $pdo)

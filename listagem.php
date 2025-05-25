@@ -1,8 +1,6 @@
 <?php
 require_once 'connection.php';
 
-require_once __DIR__ . '/vendor/autoload.php';
-
 use Alura\Mvc\Repositorio\VideoRepositorio;
 
 $pdo = new PDO('mysql:host=localhost;dbname=mvc_videos','root','123456');
