@@ -1,25 +1,30 @@
 <?php
 require_once 'connection.php';
-$pdo = new PDO('mysql:host=localhost;dbname=mvc_videos','root','123456');
 
-$videoList = $pdo -> query('SELECT * FROM videos;')-> fetchAll(PDO::FETCH_ASSOC);
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Alura\Mvc\Repositorio\VideoRepositorio;
+
+$pdo = new PDO('mysql:host=localhost;dbname=mvc_videos','root','123456');
+$repositorio = new VideoRepositorio($pdo);
+$videoList = $repositorio->buscarTodos();
 
 ?>
     <?= require_once 'inicio-html.php'?>
     <ul class="videos__container" alt="videos alura">
-        <?php foreach($videoList as $video): ?>
+        <?php foreach($videoList as $video):?>
             
         <li class="videos__item">
-            <iframe width="100%" height="72%" src="<?=$video['URL_VIDEO']?>"
+            <iframe width="100%" height="72%" src="<?=$video->url?>"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
             <div class="descricao-video">
                 <img src="./img/logo.png" alt="logo canal alura">
-                <h3><?=$video['TITULO_VIDEO']?></h3>
+                <h3><?=$video -> titulo?></h3>
                 <div class="acoes-video">
-                    <a href="editar-video?id=<?=$video['id']?>">Editar</a>
-                    <a href="remover-video?id=<?=$video['id']?>">Excluir</a>
+                    <a href="editar-video?id=<?=$video -> id?>">Editar</a>
+                    <a href="remover-video?id=<?=$video -> id?>">Excluir</a>
                 </div>
             </div>
         </li>   

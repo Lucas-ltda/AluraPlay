@@ -5,9 +5,30 @@
 namespace Alura\Mvc\Entity;
 
 class Video{
-    public function __construct(public readonly string $url,public readonly string $titulo)
+    
+    public readonly string $url; // propriedade publica que só pode ter seu valor atribuido uma vez " readonly"
+    public readonly string $titulo;
+    public readonly int $id;
+
+    public function __construct(string $url,string $titulo) 
     {
-        $this -> url = $url;
-        $this-> titulo = $titulo;
+        $this->setUrl($url);
+    }
+
+    private function setUrl(string $url){
+
+        if (filter_var($url,FILTER_VALIDATE_URL)=== false)  {
+            throw new \InvalidArgumentException();
+        }
+
+        $this->url = $url;
+    }
+
+    private function setTitulo(string $titulo):void{
+        $this->titulo = $titulo;
+    }
+    
+    public function setId(int $id){
+        $this->id = $id;
     }
 }
