@@ -1,8 +1,6 @@
 <?php
-require_once 'connection.php';
-
 use Alura\Mvc\Repositorio\VideoRepositorio;
-
+require_once 'connection.php';
 $pdo = new PDO('mysql:host=localhost;dbname=mvc_videos','root','123456');
 $repositorio = new VideoRepositorio($pdo);
 $videoList = $repositorio->buscarTodos();
